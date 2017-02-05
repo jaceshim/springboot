@@ -1,0 +1,49 @@
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE'
+	}
+}
+
+apply plugin: 'groovy'
+apply plugin: 'spring-boot'
+apply plugin: 'idea'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+	jcenter()
+}
+
+dependencies {
+	// JPA
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// Groovy
+	compile 'org.codehaus.groovy:groovy-all:2.4.7'
+
+	// Spring
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile 'org.springframework.boot:spring-boot-starter-jetty'
+
+	compile 'org.modelmapper:modelmapper:0.7.7'
+	compile 'org.projectlombok:lombok:1.16.12'
+
+	runtime 'org.springframework.boot:spring-boot-devtools'
+	runtime 'com.h2database:h2'
+
+	// Spock
+	testCompile 'org.springframework.boot:spring-boot-starter-test'
+	testCompile 'org.spockframework:spock-core:1.1-groovy-2.4-rc-3'
+	testCompile 'org.spockframework:spock-spring:1.1-groovy-2.4-rc-3'
+	testRuntime 'cglib:cglib-nodep:3.2.4'
+}
+
+idea {
+	module {
+		inheritOutputDirs = false
+		outputDir = file("$buildDir/classes/main/")
+	}
+}
